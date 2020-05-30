@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Equipment
+from .models import User, Equipment, BreakEquipment, Service
 from teacher.models import Teacher
 
 
@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Equipment)
 class EquipmentAdmin(admin.ModelAdmin):
-    list_display = ['eName', 'eKind', 'eRoom', 'eTeacher', 'eStudent']
+    list_display = ['eName', 'eKind', 'eRoom', 'eTeacher', 'eStudent', 'eState']
 
 
 @admin.register(Teacher)

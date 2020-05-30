@@ -63,10 +63,18 @@ def stateunable(request):
     return render(request, "teacher/stateunable.html", {"equipments": equipments})
 
 
+def statefailure(request):
+    """故障状态设备列表"""
+    equipments = models.Equipment.objects.all().filter(eState="故障")
+    print(equipments)
+    return render(request, "teacher/statefailure.html", {"equipments": equipments})
+
+
 def edit(request):
     """编辑设备信息"""
-    eid = request.GET['eid']
-    equipment = models.Equipment.objects.get(id=int(eid))
+    eid = request.GET["eid"]
+    print(eid)
+    equipment = models.Equipment.objects.get(eNum=int(eid))
     return render(request, "teacher/edit.html", {"equipment": equipment})
 
 
@@ -77,6 +85,8 @@ def update(request):
     e.eName = request.POST["eName"]
     e.eKind = request.POST["eKind"]
     e.eRoom = request.POST["eRoom"]
+    e.eCost = request.POST["eCost"]
+    e.eManufacture = request.POST["eManufacture"]
     t = Teacher.objects.get(tName=e.eTeacher.tName)
     t.tName = request.POST["tName"]
     t.tPhone = request.POST["tPhone"]
@@ -109,14 +119,17 @@ def addequipment(request):
 
 def save(request):
     """保存添加的内容"""
+    eNum = request.POST["eNum"]
     eName = request.POST["eName"]
+    eCost = request.POST["eCost"]
     eKind = request.POST["eKind"]
     eRoom = request.POST["eRoom"]
+    eManufacture = request.POST["eManufacture"]
     etName = request.POST["tName"]
     teacher = Teacher.objects.get(tName=etName)
     try:
-        models.Equipment.objects.create(eName=eName, eKind=eKind, eRoom=eRoom,
-                                        eTeacher=teacher)
+        models.Equipment.objects.create(eNum=eNum, eKind=eKind, eName=eName, eCost=eCost,
+                                        eManufacture=eManufacture, eRoom=eRoom, eTeacher=teacher)
     except Exception:
         return JsonResponse({"code": 1})
     else:

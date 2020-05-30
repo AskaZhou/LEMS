@@ -44,6 +44,20 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">价格</label>
+        <div class="layui-input-block">
+        <input type="text" name="eCost" lay-verify="required" placeholder="请输入" value="{{equipment.eCost}}" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">生产厂家</label>
+        <div class="layui-input-block">
+        <input type="text" name="eManufacture" lay-verify="required" placeholder="请输入" value="{{equipment.eManufacture}}" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">负责教师</label>
         <div class="layui-input-block">
         <input type="text" name="tName" lay-verify="required" placeholder="请输入" value="{{equipment.eTeacher.tName}}" autocomplete="off" class="layui-input">

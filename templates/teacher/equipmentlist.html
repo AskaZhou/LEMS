@@ -43,7 +43,7 @@
       <div class="layui-table-cell">{{ equipment.eName }}</div>
     </td>
     <td data-field="sort">
-      <div class="layui-table-cell">{{ equipment.id }}</div>
+      <div class="layui-table-cell">{{ equipment.eNum }}</div>
     </td>
     <td data-field="sort">
       <div class="layui-table-cell">{{ equipment.eRoom }}</div>
@@ -68,7 +68,7 @@
     </td>
     <td data-field="10" align="center" data-off="true">
       <div class="layui-table-cell laytable-cell-1-10">
-        <a class="edit layui-btn layui-btn-xs" lay-event="edit" data-url=edit?eid={{equipment.id}}><i class="layui-icon"></i></a>
+        <a class="edit layui-btn layui-btn-xs" lay-event="edit" data-url=edit?eid={{equipment.eNum}}><i class="layui-icon"></i></a>
         <a class="del layui-btn layui-btn-danger layui-btn-xs" lay-event="del"  data-url=delete?eid={{equipment.id}}><i class="layui-icon"></i></a>
       </div>
     </td>

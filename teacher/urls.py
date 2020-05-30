@@ -13,6 +13,7 @@ urlpatterns = [
     path('kindqt', views.kindqt),
     path('stateable', views.stateable),
     path('stateunable', views.stateunable),
+    path('statefailure', views.statefailure),
     path('edit', views.edit),
     path('update', views.update),
     path('addequipment', views.addequipment),

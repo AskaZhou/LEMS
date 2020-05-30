@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'LEMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lems',
+        'NAME': 'keshe',
         'USER': 'root',
-        'PASSWORD': '940613',
+        'PASSWORD': '9235',
         'HOST': 'localhost',
         'PORT': '3306',
 

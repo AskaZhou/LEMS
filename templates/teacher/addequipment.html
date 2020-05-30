@@ -14,6 +14,13 @@
   <form class="layui-form layui-form-pane" id="add" method ="post">
 
       <div class="layui-form-item">
+        <label class="layui-form-label">设备编号</label>
+        <div class="layui-input-block">
+        <input type="text" name="eNum" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">设备类别</label>
         <div class="layui-input-block">
                 <select name="eKind" title="">
@@ -33,6 +40,29 @@
         <input type="text" name="eName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
       </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">价格</label>
+        <div class="layui-input-block">
+        <input type="text" name="eCost" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">制造商</label>
+        <div class="layui-input-block">
+        <input type="text" name="eManufacture" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <!--
+      <div class="layui-form-item">
+        <label class="layui-form-label">生产日期</label>
+        <div class="layui-input-block">
+        <input type="text" name="eManufacture" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      -->
 
       <div class="layui-form-item">
         <label class="layui-form-label">所在实验室</label>
