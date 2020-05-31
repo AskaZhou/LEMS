@@ -42,25 +42,30 @@ def checklogin(request):
     userNum = request.POST['userNum']
     userPwd = request.POST['userPwd']
     request.session["userNum"] = userNum
-    Flag = False
+    Flag = 0
     # 查询是否已经注册
     if models.User.objects.filter(userNum=userNum):
         if models.User.objects.filter(userNum=userNum).get().userNum == "0":
-            Flag = True
+            Flag = 1
+        elif models.User.objects.filter(userNum=userNum).get().userNum == "1":
+            Flag = 2
         # 查询密码是否正确
         if check_password(userPwd, models.User.objects.filter(userNum=userNum).get().userPwd):
-            if Flag:
+            if Flag == 1:
                 # 教师登录成功
                 return JsonResponse({"code": 0})
+            elif Flag == 2:
+                # 维修员登录成功
+                return JsonResponse({"code": 1})
             else:
                 # 学生登录成功
-                return JsonResponse({"code": 1})
+                return JsonResponse({"code": 2})
         else:
             # 密码错误
-            return JsonResponse({"code": 2})
+            return JsonResponse({"code": 3})
     else:
         # 用户不存在
-        return JsonResponse({"code": 3})
+        return JsonResponse({"code": 4})
 
 
 

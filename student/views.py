@@ -84,7 +84,7 @@ def borrow(request):
     user = models.User.objects.get(userNum=userNum)
     user.useCount += 1
     equipment.eStudent = user
-    print(user.useCount)
+    #print(user.useCount)
     if user.useCount == 4:
         return HttpResponse("每人最多只可以同时借三件设备！")
     else:

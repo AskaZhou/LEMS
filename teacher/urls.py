@@ -14,6 +14,8 @@ urlpatterns = [
     path('stateable', views.stateable),
     path('stateunable', views.stateunable),
     path('statefailure', views.statefailure),
+    path('service', views.service),
+    path('broken', views.broken),
     path('edit', views.edit),
     path('update', views.update),
     path('addequipment', views.addequipment),
@@ -22,6 +24,8 @@ urlpatterns = [
     path('userlist', views.userlist),
     path('deleteuser', views.deleteuser),
     path('applylist', views.applylist),
-    path('yes', views.yes)
+    path('yes', views.yes),
+    path('main', views.main),
+    path('mainupdate', views.mainupdate)
 ]
 

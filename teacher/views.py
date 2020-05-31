@@ -2,6 +2,7 @@ from django.shortcuts import render
 from user import models
 from .models import Teacher
 from django.http import JsonResponse, HttpResponse
+import random
 
 
 def t_show(request):
@@ -66,14 +67,25 @@ def stateunable(request):
 def statefailure(request):
     """故障状态设备列表"""
     equipments = models.Equipment.objects.all().filter(eState="故障")
-    print(equipments)
     return render(request, "teacher/statefailure.html", {"equipments": equipments})
+
+
+def service(request):
+    """维修状态设备列表"""
+    equipments = models.Equipment.objects.all().filter(eState="维修")
+    return render(request, "teacher/equipmentlist.html", {"equipments": equipments})
+
+
+def broken(request):
+    """维修状态设备列表"""
+    equipments = models.Equipment.objects.all().filter(eState="报销")
+    return render(request, "teacher/equipmentlist.html", {"equipments": equipments})
+
 
 
 def edit(request):
     """编辑设备信息"""
     eid = request.GET["eid"]
-    print(eid)
     equipment = models.Equipment.objects.get(eNum=int(eid))
     return render(request, "teacher/edit.html", {"equipment": equipment})
 
@@ -177,3 +189,29 @@ def yes(request):
         return HttpResponse("确认失败！")
     else:
         return HttpResponse("确认成功！")
+
+
+def main(request):
+    """申请维修"""
+    eid = request.GET["eid"]
+    equipment = models.Equipment.objects.get(eNum=int(eid))
+    return render(request, "teacher/main.html", {"equipment": equipment})
+
+
+def mainupdate(request):
+    """设置故障状态"""
+    eid = request.GET["eid"]
+    e = models.Equipment.objects.get(eNum=eid)
+    e.eState = "故障"
+    BreakEquipmentNum = request.POST["BreakEquipmentNum"]
+    BreakEquipmentName = request.POST["BreakEquipmentNum"]
+    BreakTxt = request.POST["BreakTxt"]
+    DealPerson = request.POST["Dealperson"]
+    try:
+        e.save()
+        models.BreakEquipment.objects.create(BreakTxt=BreakTxt, eNum=e, BreakEquipmentNum=BreakEquipmentNum,
+                                             BreakEquipmentName=BreakEquipmentName, DealPerson=DealPerson)
+    except Exception:
+        return JsonResponse({"code": 1})
+    else:
+        return JsonResponse({"code": 2})
