@@ -93,7 +93,7 @@ def edit(request):
 def update(request):
     """更新设备信息"""
     eid = request.GET["eid"]
-    e = models.Equipment.objects.get(id=eid)
+    e = models.Equipment.objects.get(eNum=eid)
     e.eName = request.POST["eName"]
     e.eKind = request.POST["eKind"]
     e.eRoom = request.POST["eRoom"]
@@ -114,7 +114,7 @@ def update(request):
 def delete(request):
     """删除设备信息"""
     eid = request.GET["eid"]
-    equipment = models.Equipment.objects.filter(id=eid)
+    equipment = models.Equipment.objects.filter(eNum=eid)
     try:
         equipment.delete()
     except Exception:
@@ -175,7 +175,7 @@ def yes(request):
     """确认归还"""
     eid = request.GET["eid"]
     uid = request.GET["uid"]
-    equipment = models.Equipment.objects.get(id=eid)
+    equipment = models.Equipment.objects.get(eNum=eid)
     user = models.User.objects.get(id=uid)
     apply = models.Applylist.objects.get(equipment=equipment)
     equipment.eStudent = None

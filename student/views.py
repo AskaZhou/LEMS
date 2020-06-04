@@ -79,12 +79,11 @@ def borrow(request):
     userNum = request.session.get("userNum")
     request.session["userNum"] = userNum
     eid = request.GET["eid"]
-    equipment = models.Equipment.objects.get(id=eid)
+    equipment = models.Equipment.objects.get(eNum=eid)
     equipment.eState = "借出"
     user = models.User.objects.get(userNum=userNum)
     user.useCount += 1
     equipment.eStudent = user
-    #print(user.useCount)
     if user.useCount == 4:
         return HttpResponse("每人最多只可以同时借三件设备！")
     else:
@@ -103,7 +102,7 @@ def returnback(request):
     request.session["userNum"] = userNum
     eid = request.GET["eid"]
     user = models.User.objects.get(userNum=userNum)
-    equipment = models.Equipment.objects.get(id=eid)
+    equipment = models.Equipment.objects.get(eNum=eid)
     equipment.eState = "待确认"
     try:
         models.Applylist.objects.create(student=user, equipment=equipment)

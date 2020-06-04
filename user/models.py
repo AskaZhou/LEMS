@@ -5,7 +5,7 @@ import datetime
 
 class User(models.Model):
     userName = models.CharField(max_length=11, verbose_name='姓名')
-    userNum = models.CharField(max_length=15, verbose_name='学号')
+    userNum = models.CharField(max_length=15, verbose_name='学号', unique=True)
     useride = models.CharField(max_length=15, verbose_name='用户类别', default="学生")
     userPhone = models.CharField(max_length=11, verbose_name='联系方式')
     userPwd = models.CharField(max_length=78, verbose_name='密码')
@@ -24,7 +24,7 @@ class Equipment(models.Model):
                     ("生物类", "生物类"),
                     ("其它类", "其它类"),
                     )
-    eNum = models.CharField(max_length=15, verbose_name='设备号', unique=True)
+    eNum = models.CharField(max_length=15, verbose_name='设备号', unique=True, primary_key=True)
     eKind = models.CharField(max_length=10, verbose_name="设备类型", choices=KIND_CHOICES, default="请选择设备类型")
     eName = models.CharField(max_length=10, verbose_name="设备名称")
     eCost = models.CharField(max_length=11, verbose_name='价格')
@@ -40,7 +40,7 @@ class Equipment(models.Model):
 
 
 class BreakEquipment(models.Model):
-    BreakEquipmentNum = models.CharField(max_length=15, verbose_name='故障序号', unique=True)
+    BreakEquipmentNum = models.CharField(max_length=15, verbose_name='故障序号', unique=True, primary_key=True)
     BreakEquipmentName = models.CharField(max_length=10, verbose_name='故障名称', null=True, blank=True, default=" ")
     BreakData = models.DateField(auto_now_add=True, verbose_name="故障日期")
     BreakTxt = models.CharField(max_length=11, verbose_name='故障信息', null=True, blank=True)
@@ -52,7 +52,7 @@ class BreakEquipment(models.Model):
 
 
 class Service(models.Model):
-    ServiceNum = models.CharField(max_length=15, verbose_name='维修号', unique=True)
+    ServiceNum = models.CharField(max_length=15, verbose_name='维修号', unique=True, primary_key=True)
     ServiceData = models.DateField(auto_now_add=True, verbose_name="维修日期")
     ServiceTxt = models.CharField(max_length=11, verbose_name='维修信息')
     Change = models.CharField(max_length=11, verbose_name='改变配置')

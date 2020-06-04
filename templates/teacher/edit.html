@@ -83,7 +83,7 @@ layui.use(['layer', 'form'], function() {
       var layer = layui.layer,$ = layui.jquery,form = layui.form;
       form.on('submit(update)', function(data) {
           $.ajax({
-              url:"update?eid={{equipment.id}}",
+              url:"update?eid={{equipment.eNum}}",
               data:data.field,
               dataType:'json',
               type:'post',

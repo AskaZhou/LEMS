@@ -69,7 +69,7 @@
     <td data-field="10" align="center" data-off="true">
       <div class="layui-table-cell laytable-cell-1-10">
         <a class="edit layui-btn layui-btn-xs" lay-event="edit" data-url=edit?eid={{equipment.eNum}}><i class="layui-icon">编辑</i></a>
-        <a class="del layui-btn layui-btn-danger layui-btn-xs" lay-event="del"  data-url=delete?eid={{equipment.id}}><i class="layui-icon">删除</i></a>
+        <a class="del layui-btn layui-btn-danger layui-btn-xs" lay-event="del"  data-url=delete?eid={{equipment.eNum}}><i class="layui-icon">删除</i></a>
         {% if equipment.eState != '故障' and equipment.eState != '维修' and equipment.eState != '报销' %}
         <a class="main layui-btn layui-btn-xs" lay-event="main" data-url=main?eid={{equipment.eNum}}><i class="layui-icon">维修</i></a>
         {% else %}

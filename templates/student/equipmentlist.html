@@ -41,7 +41,7 @@
       <div class="layui-table-cell">{{ equipment.eName }}</div>
     </td>
     <td data-field="sort">
-      <div class="layui-table-cell">{{ equipment.id }}</div>
+      <div class="layui-table-cell">{{ equipment.eNum }}</div>
     </td>
     <td data-field="sort">
       <div class="layui-table-cell">{{ equipment.eRoom }}</div>
@@ -60,7 +60,7 @@
     <td data-field="10" align="center" data-off="true">
         <div class="layui-table-cell laytable-cell-1-10">
           {% if equipment.eState == '可借' %}
-          <a class="borrow layui-btn layui-btn-xs" lay-event="borrow" data-url=borrow?eid={{equipment.id}}>借用</a>
+          <a class="borrow layui-btn layui-btn-xs" lay-event="borrow" data-url=borrow?eid={{equipment.eNum}}>借用</a>
           {% else %}
           <a class="layui-btn layui-btn-disabled layui-btn-xs" >借用</a>
           {% endif %}
