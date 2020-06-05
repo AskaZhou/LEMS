@@ -16,16 +16,10 @@ urlpatterns = [
     path('statefailure', views.statefailure),
     path('service', views.service),
     path('broken', views.broken),
-    path('edit', views.edit),
-    path('update', views.update),
-    path('addequipment', views.addequipment),
-    path('save', views.save),
-    path('delete', views.delete),
-    path('userlist', views.userlist),
-    path('deleteuser', views.deleteuser),
+    path('search', views.search),
+    path('myequipments', views.myequipments),
+    path('main', views.main),
+    path('mainupdate', views.mainupdate),
     path('applylist', views.applylist),
     path('yes', views.yes),
-    path('main', views.main),
-    path('mainupdate', views.mainupdate)
 ]
-

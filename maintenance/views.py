@@ -92,3 +92,18 @@ def fail(request):
         return HttpResponse("确认失败！")
     else:
         return HttpResponse("确认成功！")
+
+
+def search(request):
+    """设备搜索"""
+    sear = request.GET["sear"]
+    try:
+        int(sear)
+    except Exception:
+        equipments = models.Equipment.objects.all().filter(eName=sear)
+        content = {'equipments': equipments}
+        return render(request, "teacher/search.html", content)
+    else:
+        equipments = models.Equipment.objects.all().filter(eNum=sear)
+        content = {'equipments': equipments}
+        return render(request, "teacher/search.html", content)

@@ -70,6 +70,19 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">用户类别</label>
+        <div class="layui-input-block">
+            <label>
+                <select name="useride">
+                    <option value="{{User.useride}}" selected="selected">{{User.useride}}</option>
+                    <option value="学生">学生</option>
+                    <option value="教师">教师</option>
+                </select>
+            </label>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">学/工号</label>
         <div class="layui-input-block">
         <input type="text" name="userNum" lay-verify="required" placeholder="请输入学号" autocomplete="off" class="layui-input">
@@ -157,7 +170,7 @@ layui.use(['layer', 'form'], function() {
                 if (data.code === 0){
                   layer.msg('登录成功,正在跳转...');
                   setTimeout(function() {
-                      location.href = 'teacher/show';
+                      location.href = 'root/show';
                   }, 500);
                 }else if (data.code === 1){
                   layer.msg('登录成功,正在跳转...');
@@ -170,18 +183,23 @@ layui.use(['layer', 'form'], function() {
                       location.href = 'student/show';
                   }, 500);
                 }else if (data.code === 3){
+                  layer.msg('登录成功,正在跳转...');
+                  setTimeout(function() {
+                      location.href = 'teacher/show';
+                  }, 500);
+                }else if (data.code === 4){
                   layer.msg('密码错误！',
                   {
                     time: 500
                   });
-                }else if (data.code === 4){
+                }else if (data.code === 5){
                   layer.msg('用户不存在，请注册后登录！',
                   {
                     time: 500
                   });
                 }else{
                   $("#btnSave").removeClass('layui-btn-disabled').text('立即登录');
-                    layer.msg(data.msg);
+                  layer.msg(data.msg);
                 }
               }
           });
@@ -210,6 +228,11 @@ layui.use(['layer', 'form'], function() {
                     setTimeout(function () {
                         location.href = '';
                     }, 500);
+                }else if (data.code === 5) {
+                    layer.msg('电话号已注册！');
+                    setTimeout(function () {
+                        location.href = '';
+                    }, 500);
                 }else if (data.code === 4){
                   layer.msg('学号和手机号必须为数字！', {
                     time: 500
@@ -232,4 +255,3 @@ layui.use(['layer', 'form'], function() {
 
 </body>
 </html>
-

@@ -13,6 +13,7 @@ def index(request):
 def register(request):
     userName = request.POST['userName']
     userNum = request.POST['userNum']
+    useride = request.POST['useride']
     userPhone = request.POST['userPhone']
     userPwd1 = request.POST['userPwd1']
     userPwd2 = request.POST['userPwd2']
@@ -30,10 +31,16 @@ def register(request):
     # 通过学号判断用户是否已经注册
     if models.User.objects.filter(userNum=userNum):
         return JsonResponse({"code": 2})
+
+    # 通过电话号判断用户是否已经注册
+    if models.User.objects.filter(userPhone=userPhone):
+        return JsonResponse({"code": 5})
     else:
         # 注册信息
+        if useride == "教师" and userNum != "0" and userNum != "1" and (not models.Teacher.objects.filter(tPhone=userPhone)):
+            models.Teacher.objects.create(tName=userName, tPhone=userPhone)
         models.User.objects.create(userName=userName, userNum=userNum, userPhone=userPhone,
-                                   userPwd=make_password(userPwd1))
+                                   useride=useride, userPwd=make_password(userPwd1))
         return JsonResponse({"code": 3})
 
 
@@ -52,20 +59,24 @@ def checklogin(request):
         # 查询密码是否正确
         if check_password(userPwd, models.User.objects.filter(userNum=userNum).get().userPwd):
             if Flag == 1:
-                # 教师登录成功
+                # 管理员登录成功
                 return JsonResponse({"code": 0})
             elif Flag == 2:
                 # 维修员登录成功
                 return JsonResponse({"code": 1})
             else:
-                # 学生登录成功
-                return JsonResponse({"code": 2})
+                if models.User.objects.filter(userNum=userNum).get().useride == "学生":
+                    # 学生登录成功
+                    return JsonResponse({"code": 2})
+                else:
+                    # 教师登录成功
+                    return JsonResponse({"code": 3})
         else:
             # 密码错误
-            return JsonResponse({"code": 3})
+            return JsonResponse({"code": 4})
     else:
         # 用户不存在
-        return JsonResponse({"code": 4})
+        return JsonResponse({"code": 5})
 
 
 

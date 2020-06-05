@@ -8,29 +8,39 @@
 </head>
 <body class="layui-layout-body">
   <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-      <div class="layui-logo">实验室设备管理系统</div>
+  <div class="layui-header">
+    <div class="layui-logo">实验室设备管理系统</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
-      <ul class="layui-nav layui-layout-left">
-        <li class="layui-nav-item" ><a href="equipmentlist" target="option">设备列表</a></li>
-        <li class="layui-nav-item" ><a href="addequipment" target="option">新增设备</a></li>
-        <li class="layui-nav-item"><a href="userlist" target="option">用户列表</a></li>
-        <li class="layui-nav-item"><a href="applylist" target="option">归还申请</a></li>
-      </ul>
-      <ul class="layui-nav layui-layout-right">
-        <li class="layui-nav-item">
-          <a href="javascript:;">
-            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-            root
-          </a>
-          <dl class="layui-nav-child">
-            <dd><a href="">基本资料</a></dd>
-            <dd><a href="">安全设置</a></dd>
-          </dl>
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item" ><a href="equipmentlist" target="option">设备列表</a></li>
+      <li class="layui-nav-item" ><a href="myequipments" target="option">我的设备</a></li>
+      <li class="layui-nav-item" ><a href="applylist" target="option">归还申请</a></li>
+
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+
+      <form class="layui-nav-item layui-form layui-form-pane" action="search" method ="get" target="option">
+        <li class="layui-nav-item layui-from-item" target="option">
+          <div class="layui-from-item" style="float: left; position: relative;">
+            <label class="layui-form-label"></label>
+              <input style="width: auto;" type="text" name="sear" lay-verify="required" placeholder="输入设备编号或名称" autocomplete="off" class="layui-input">
+          </div>
+          <input class="layui-btn" type="submit" lay-submit="" style="float: left; position: relative;" value="搜索">
         </li>
-        <li class="layui-nav-item"><a href="/">退出登录</a></li>
-      </ul>
-    </div>
+      </form>
+
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">{{userNum}}
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a>基本资料</a></dd>
+          <dd><a>安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="/">退出登录</a></li>
+    </ul>
+  </div>
 
     <div class="layui-side layui-bg-black">
       <div class="layui-side-scroll">
@@ -71,13 +81,14 @@
       </div>
     </div>
   </div>
-  <script src="../../static/layui/layui.js"></script>
-  <script>
+<script src="../../static/layui/layui.js"></script>
+<script>
   //JavaScript代码区域
   layui.use('element', function(){
     var element = layui.element;
 
   });
-  </script>
+
+</script>
 </body>
 </html>

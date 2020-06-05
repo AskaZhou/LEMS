@@ -26,7 +26,6 @@
       <th lay-data="{field:'student', width:80, sort: true, fixed: 'right'}">借用学生</th>
       <th lay-data="{field:'snum', width:80, sort: true}">学生学号</th>
       <th lay-data="{field:'sphone', width:80, sort: true, fixed: 'right'}">学生电话</th>
-      <th lay-data="{fixed: 'right', width:178, toolbar: '#barDemo'}">操作</th>
     </tr>
   </thead>
   <tbody>
@@ -66,17 +65,6 @@
     <td data-field="sort">
       <div class="layui-table-cell">{{ equipment.eStudent.userPhone }}</div>
     </td>
-    <td data-field="10" align="center" data-off="true">
-      <div class="layui-table-cell laytable-cell-1-10">
-        <a class="edit layui-btn layui-btn-xs" lay-event="edit" data-url=edit?eid={{equipment.eNum}}><i class="layui-icon">编辑</i></a>
-        <a class="del layui-btn layui-btn-danger layui-btn-xs" lay-event="del"  data-url=delete?eid={{equipment.eNum}}><i class="layui-icon">删除</i></a>
-        {% if equipment.eState != '故障' and equipment.eState != '维修' and equipment.eState != '报销' %}
-        <a class="main layui-btn layui-btn-xs" lay-event="main" data-url=main?eid={{equipment.eNum}}><i class="layui-icon">维修</i></a>
-        {% else %}
-        <a class="layui-btn layui-btn-disabled layui-btn-xs">维修中</a>
-        {% endif %}
-      </div>
-    </td>
     </tr>
     {% endfor %}
     {% endblock %}
@@ -106,29 +94,6 @@
 
   });
 
-</script>
-
-<script type="text/javascript">
-layui.use('layer', function(){
-    var layer = layui.layer;
-    var $ = layui.jquery;
-    $(".edit").click(function() {
-      var url = $(this).attr("data-url");
-     layer.open({
-                type: 2 //此处以iframe举例
-                , title: '更新设备信息'
-                , area: ['700px', '400px']
-                , shade: 0
-                , maxmin: true
-                , offset: '10px'
-                , content: url
-                , btn: ['关闭'] //只是为了演示
-                , end: function () {
-                location.reload();}
-            });
-    });
-
-  });
 layui.use('laypage', function(){
   var laypage = layui.laypage;
 
@@ -140,36 +105,5 @@ layui.use('laypage', function(){
 });
 </script>
 
-<script type="text/javascript">
-layui.use('layer', function(){
-    var layer = layui.layer;
-    var $ = layui.jquery;
-    $(".main").click(function() {
-      var url = $(this).attr("data-url");
-     layer.open({
-                type: 2 //此处以iframe举例
-                , title: '申请维修'
-                , area: ['400px', '300px']
-                , shade: 0
-                , maxmin: true
-                , offset: '10px'
-                , content: url
-                , btn: ['关闭'] //只是为了演示
-                , end: function () {
-                location.reload();}
-            });
-    });
-
-  });
-layui.use('laypage', function(){
-  var laypage = layui.laypage;
-
-  //执行一个laypage实例
-  laypage.render({
-    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-    ,count: 50 //数据总数，从服务端得到
-  });
-});
-</script>
 </body>
 </html>

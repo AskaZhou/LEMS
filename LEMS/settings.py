@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'student',
-    'teacher',
     'maintenance',
+    'root',
+    'teacher',
 ]
 
 MIDDLEWARE = [
@@ -80,9 +81,9 @@ WSGI_APPLICATION = 'LEMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
+        'NAME': 'keshe',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': '9235',
         'HOST': 'localhost',
         'PORT': '3306',
 

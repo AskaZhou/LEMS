@@ -11,5 +11,6 @@ urlpatterns = [
     path('edit', views.edit),
     path('save', views.save),
     path('success', views.success),
+    path('search', views.search),
     path('fail', views.fail),
 ]

@@ -72,13 +72,15 @@
       </div>
 
       <div class="layui-form-item">
-       <input class="layui-btn layui-btn-fluid"   type="submit" lay-submit="" lay-filter="update" name="" value="更新">
+       <input class="layui-btn layui-btn-fluid" type="submit" lay-submit="" lay-filter="update" name="" value="更新">
       </div>
   </form>
 
- <script src="../../static/layui/layui.js" charset="utf-8"></script>
+<script src="../../static/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+
+
 layui.use(['layer', 'form'], function() {
       var layer = layui.layer,$ = layui.jquery,form = layui.form;
       form.on('submit(update)', function(data) {

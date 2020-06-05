@@ -1,13 +1,24 @@
 from django.db import models
-from teacher import models as T
 import datetime
 
 
+class Teacher(models.Model):
+    tName = models.CharField(max_length=5, verbose_name="教师姓名")
+    tPhone = models.CharField(max_length=11, verbose_name="联系电话", unique=True)
+
+    def __str__(self):
+        return self.tName
+
+
 class User(models.Model):
+    KIND_CHOICES = (
+        ("学生", "学生"),
+        ("教师", "教师"),
+    )
     userName = models.CharField(max_length=11, verbose_name='姓名')
     userNum = models.CharField(max_length=15, verbose_name='学号', unique=True)
-    useride = models.CharField(max_length=15, verbose_name='用户类别', default="学生")
-    userPhone = models.CharField(max_length=11, verbose_name='联系方式')
+    useride = models.CharField(max_length=15, verbose_name='用户类别', choices=KIND_CHOICES)
+    userPhone = models.CharField(max_length=11, verbose_name='联系方式', unique=True)
     userPwd = models.CharField(max_length=78, verbose_name='密码')
     useCount = models.IntegerField(default=0, verbose_name='已借数')
 
@@ -32,7 +43,7 @@ class Equipment(models.Model):
     eManufactureData = models.DateField(auto_now_add=True, verbose_name="生产日期", null=True)
     eRoom = models.CharField(max_length=10, verbose_name="设备所在教室")
     eState = models.CharField(max_length=3, verbose_name="状态", choices=(('可借', '可借'), ('借出', '借出'), ('故障', '故障')), default="可借")
-    eTeacher = models.ForeignKey(T.Teacher, on_delete=models.CASCADE, verbose_name="负责教师")
+    eTeacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="负责教师")
     eStudent = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="借用学生", null=True, blank=True)
 
     def __str__(self):

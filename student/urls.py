@@ -14,5 +14,5 @@ urlpatterns = [
     path('myequipment', views.myequipment),
     path('borrow', views.borrow),
     path('returnback', views.returnback),
-
+    path('search', views.search),
 ]

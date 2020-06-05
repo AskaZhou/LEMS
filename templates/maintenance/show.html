@@ -16,6 +16,17 @@
         <li class="layui-nav-item" ><a href="servicelist" target="option">维修列表</a></li>
       </ul>
       <ul class="layui-nav layui-layout-right">
+
+        <form class="layui-nav-item layui-form layui-form-pane" action="search" method ="get" target="option">
+        <li class="layui-nav-item layui-from-item" target="option">
+          <div class="layui-from-item" style="float: left; position: relative;">
+            <label class="layui-form-label"></label>
+              <input style="width: auto;" type="text" name="sear" lay-verify="required" placeholder="输入设备编号或名称" autocomplete="off" class="layui-input">
+          </div>
+          <input class="layui-btn" type="submit" lay-submit="" style="float: left; position: relative;" value="搜索">
+        </li>
+        </form>
+
         <li class="layui-nav-item">
           <a href="javascript:;">
             <img src="http://t.cn/RCzsdCq" class="layui-nav-img">

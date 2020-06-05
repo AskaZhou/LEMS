@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import User, Equipment, BreakEquipment, Service
-from teacher.models import Teacher
+from .models import User, Equipment, Teacher, Service, BreakEquipment
 
 
 # Register your models here.
@@ -17,3 +16,13 @@ class EquipmentAdmin(admin.ModelAdmin):
 @admin.register(Teacher)
 class EquipmentAdmin(admin.ModelAdmin):
     list_display = ['tName', 'tPhone']
+
+
+@admin.register(BreakEquipment)
+class BreakEquipmentAdmin(admin.ModelAdmin):
+    list_display = ['BreakEquipmentNum', 'BreakEquipmentName', 'BreakTxt']
+
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ['ServiceNum', 'ServiceTxt', 'ServiceCost']

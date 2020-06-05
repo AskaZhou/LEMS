@@ -111,3 +111,18 @@ def returnback(request):
         return HttpResponse("归还失败！")
     else:
         return HttpResponse("归还成功，请等待管理员确认！")
+
+
+def search(request):
+    """设备搜索"""
+    sear = request.GET["sear"]
+    try:
+        int(sear)
+    except Exception:
+        equipments = models.Equipment.objects.all().filter(eName=sear)
+        content = {'equipments': equipments}
+        return render(request, "student/search.html", content)
+    else:
+        equipments = models.Equipment.objects.all().filter(eNum=int(sear))
+        content = {'equipments': equipments}
+        return render(request, "student/search.html", content)
